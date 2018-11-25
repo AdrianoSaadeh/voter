@@ -103,6 +103,7 @@ public class VoterService {
         
         try {
             List<VoteOutput> votes = voteClientService.getByVoterId(voterId);
+            
             if (votes.size() > 0) {
             	throw new GenericOutputException(MESSAGE_VOTER_VOTED);
             }
@@ -116,6 +117,7 @@ public class VoterService {
 
         return new GenericOutput("Voter deleted");
     }
+
     private void checkEmailDuplicate(String email, Long currentVoter){
         Voter voter = voterRepository.findFirstByEmail(email);
         if (voter != null && !voter.getId().equals(currentVoter)){
